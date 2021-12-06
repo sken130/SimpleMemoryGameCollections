@@ -1,4 +1,6 @@
 import logo from './logo.svg';
+import image_IsFirstImageDifferentFromSecondImage from "./Images/buttons/IsFirstImageDifferentFromSecondImage.png"
+import ImageButton from './CustomComponents/ImageButton.js';
 import { CompoundButton } from '@fluentui/react/lib/Button';
 import { Image, IImageProps } from '@fluentui/react/lib/Image';
 import './App.css';
@@ -23,8 +25,9 @@ function App() {
           <span><img src={logo} className="App-logo" style={{display:"inline"}}></img></span>
           Man one two
         </CompoundButton> */}
-        <Image src={logo} width="40%" alt="Example with no image fit value and no height or width is specified." />
-        Is second image different from first image?
+        {/* <Image src={logo} width="40%" alt="Example with no image fit value and no height or width is specified." />
+        Is second image different from first image? */}
+        <ImageButton imagePath={image_IsFirstImageDifferentFromSecondImage} secondaryText="Is second image different from first image?"></ImageButton>
       </header>
     </div>
   );
