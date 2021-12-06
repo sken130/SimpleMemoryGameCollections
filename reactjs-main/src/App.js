@@ -27,7 +27,10 @@ function App() {
         </CompoundButton> */}
         {/* <Image src={logo} width="40%" alt="Example with no image fit value and no height or width is specified." />
         Is second image different from first image? */}
-        <ImageButton imagePath={image_IsFirstImageDifferentFromSecondImage} secondaryText="Is second image different from first image?"></ImageButton>
+        <ImageButton
+          imagePath={image_IsFirstImageDifferentFromSecondImage}
+          secondaryText="1. Is second image different from first image?"
+          secondaryTextStyle={{fontSize: "2vw"}}></ImageButton>
       </header>
     </div>
   );
