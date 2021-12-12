@@ -12,6 +12,7 @@ function HomePage() {
 
   return (
         <ImageButton
+          style={{width: "35%"}}
           imagePath={image_IsFirstImageDifferentFromSecondImage}
           secondaryText="1. Is second image different from first image?"
           secondaryTextStyle={{fontSize: "2vw"}}

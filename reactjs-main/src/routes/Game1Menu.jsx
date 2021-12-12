@@ -19,6 +19,7 @@ class Game1Menu extends React.Component {
         return (
             <div className="Game1Menu-Main" style={{width: "100%"}}>
                 <ImageButton
+                style={{width: "35%"}}
                 imagePath={fruitsIcon}
                 secondaryText="Fruits"
                 secondaryTextStyle={{fontSize: "2vw"}}></ImageButton>

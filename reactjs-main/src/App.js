@@ -1,9 +1,7 @@
 import logo from './logo.svg';
-import image_IsFirstImageDifferentFromSecondImage from "./Images/buttons/IsFirstImageDifferentFromSecondImage.png"
-import ImageButton from './CustomComponents/ImageButton.js';
-import { CompoundButton } from '@fluentui/react/lib/Button';
-import { Image, IImageProps } from '@fluentui/react/lib/Image';
 import { useParams, useNavigate, Outlet } from "react-router-dom";
+
+import WrappedNavigationBar from "./NavigationBar.jsx";
 
 import './App.css';
 import HomePage from './routes/HomePage';
@@ -26,7 +24,7 @@ function App() {
         >
           Learn React
         </a> */}
-        
+        <WrappedNavigationBar></WrappedNavigationBar>
       </header>
       <div className="App-body">
         <Outlet />
