@@ -25,6 +25,9 @@ function App() {
           Learn React
         </a> */}
         <WrappedNavigationBar></WrappedNavigationBar>
+
+        <div style={{ borderTop: "2px solid #000000 ", marginLeft: 3, marginRight: 3 }}></div>
+
       </header>
       <div className="App-body">
         <Outlet />

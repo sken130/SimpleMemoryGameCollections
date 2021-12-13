@@ -13,14 +13,16 @@ class NavigationBar extends React.Component {
         return (
             <nav>
                 <ImageButton
-                style={{width: "10%"}}
+                style={{maxWidth: "10%", float: "left"}}
                 imagePath={homeIcon}
                 secondaryText="Home"
                 secondaryTextStyle={{fontSize: "0.7vw"}}
                 onClick={() => {this.props.navigate("home");}}
                 ></ImageButton>
 
-                <div style={{fontSize: "0.2vw"}}>Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                <div style={{float: "right", fontSize: "0.2vw", "line-height": "8vw"}}>
+                    Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+                </div>
             </nav>
         )
     }
