@@ -8,10 +8,13 @@ import {
   } from 'react-router-dom';
 import fruitsIcon from "../Images/buttons/fruits.png"
 
+const ANS_SAME = "SAME";
+const ANS_DIFFERENT = "DIFFERENT";
+
 class Game1 extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isStarted: false};
+        this.state = {isStarted: false, isComplete: false};
     }
 
     startNewGame() {
@@ -25,29 +28,46 @@ class Game1 extends React.Component {
             imageFileNames.push(`fruit${getRandomInt(5) + 1}.png`);
         }
 
+        this.answers = [];
         this.setState({
             isStarted: true,
             imageFileNames: imageFileNames,
             currentImagePosition: 0
-        }, () => {this.loadCurrentImage()})
+        }, async () => {
+            await this.loadImageByPosition(0);
+            setTimeout(() => {
+                this.loadImageByPosition(1);
+            }, 3000)
+        })
 
     }
 
-    loadCurrentImage() {
-        console.log(`loadCurrentImage - this.state.imageFileNames: ${this.state.imageFileNames}`)
-        let imageName = this.state.imageFileNames[this.state.currentImagePosition];
-        console.log(`loadCurrentImage - imageName: ${imageName}`)
-        import(`../Images/fruits/${imageName}`).then(image => {
-            this.setState({
-                loadedImage: image
+    loadImageByPosition(imagePosition) {
+        return new Promise(resolve => {
+            console.log(`loadImageByPosition - imagePosition: ${imagePosition}`)
+            let imageName = this.state.imageFileNames[imagePosition];
+            console.log(`loadImageByPosition - imageName: ${imageName}`)
+            import(`../Images/fruits/${imageName}`).then(image => {
+                this.setState({
+                    currentImagePosition: imagePosition,
+                    loadedImage: image
+                }, () => { resolve('resolved'); });
             });
         });
     }
 
-    giveAnswerAndNextImage() {
-        this.setState({
-            currentImagePosition: this.state.currentImagePosition + 1
-        }, () => {this.loadCurrentImage()})
+    giveAnswerAndNextImage(answerStr) {
+        let oldPosition = this.state.currentImagePosition;
+        let nextPosition = this.state.currentImagePosition + 1;
+        this.answers.push({oldPosition: oldPosition, nextPosition: nextPosition, answerStr: answerStr});
+
+        if (this.state.imageFileNames[nextPosition]) {
+            this.loadImageByPosition(nextPosition);
+        } else {
+            this.setState({
+                isComplete: true
+            })
+        }
     }
 
     render() {
@@ -56,16 +76,35 @@ class Game1 extends React.Component {
         var imageDiv = loadedImage ? <img src={loadedImage.default}></img> : null;
 
         if (this.state.isStarted) {
-            return (
-                <div className="Game1-Main" style={{width: "100%"}}>
-                    {imageDiv}
-                    <div>
-                        <button style={{marginLeft: "10%", marginRight: "10%"}} onClick={()=>{this.giveAnswerAndNextImage()}}>Same</button>
-                        <button style={{marginLeft: "10%", marginRight: "10%"}} onClick={()=>{this.giveAnswerAndNextImage()}}>Different</button>
+            if (this.state.isComplete) {
+                console.log(`this.answers`, this.answers);
+                return (
+                    <div className="Game1-Main" style={{width: "100%"}}>
+                        <div>
+                            Game complete!
+                        </div>
                     </div>
-                    
-                </div>
-            )            
+                )
+            } else {
+                return (
+                    <div className="Game1-Main" style={{width: "100%"}}>
+                        {imageDiv}
+
+                        {this.state.currentImagePosition > 0 ? 
+                            <div>
+                                Is this image the same as the previous image?
+                                <button style={{marginLeft: "10%", marginRight: "10%"}} onClick={()=>{this.giveAnswerAndNextImage(ANS_SAME)}}>Same</button>
+                                <button style={{marginLeft: "10%", marginRight: "10%"}} onClick={()=>{this.giveAnswerAndNextImage(ANS_DIFFERENT)}}>Different</button>
+                            </div>
+                            :
+                            <div>
+                                Remember this image
+                            </div>
+                        }
+                        
+                    </div>
+                )
+            }          
         } else {
             return (
                 <button style={{marginLeft: "10%", marginRight: "10%"}} onClick={()=>{

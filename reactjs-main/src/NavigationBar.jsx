@@ -20,7 +20,7 @@ class NavigationBar extends React.Component {
                 onClick={() => {this.props.navigate("home");}}
                 ></ImageButton>
 
-                <div style={{float: "right", fontSize: "0.2vw", "line-height": "8vw"}}>
+                <div style={{float: "right", fontSize: "0.2vw", lineHeight: "8vw"}}>
                     Icons made by <a href="https://www.flaticon.com/authors/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
                 </div>
             </nav>
