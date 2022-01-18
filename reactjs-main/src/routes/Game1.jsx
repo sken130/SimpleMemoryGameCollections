@@ -24,7 +24,8 @@ class Game1 extends React.Component {
 
         var imageFileNames = [];
 
-        for (let i = 0; i < 20; i++) {
+        var noOfImagesToShow = 21;
+        for (let i = 0; i < noOfImagesToShow; i++) {
             imageFileNames.push(`fruit${getRandomInt(5) + 1}.png`);
         }
 
