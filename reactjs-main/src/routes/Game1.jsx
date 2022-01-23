@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageButton from '../CustomComponents/ImageButton.js';
+import SequenceCounter from '../utils/JsUtils.js';
 import {
     useLocation,
     NavLink,
@@ -15,6 +15,8 @@ class Game1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {isStarted: false, isComplete: false};
+
+        this.elementSequenceCounter = new SequenceCounter();
     }
 
     startNewGame() {
@@ -61,7 +63,9 @@ class Game1 extends React.Component {
         let oldPosition = this.state.currentImagePosition;
         let nextPosition = this.state.currentImagePosition + 1;
         this.answers.push({oldPosition: oldPosition, nextPosition: nextPosition, answerStr: answerStr});
-
+        // for (let i = 0; i < 3; i++) {
+        //     console.log("seq test", this.elementSequenceCounter.getAndIncrement());
+        // }
         if (this.state.imageFileNames[nextPosition]) {
             this.loadImageByPosition(nextPosition);
         } else {
