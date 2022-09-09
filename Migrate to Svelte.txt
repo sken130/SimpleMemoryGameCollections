@@ -1,0 +1,15 @@
+How to build static website
+
+https://dev.to/robertobutti/how-to-start-building-your-static-website-with-svelte-and-tailwindcss-hbk
+
+SvelteKit with alternative backend
+
+https://www.reddit.com/r/sveltejs/comments/tttebe/should_i_use_sveltekit_with_a_separate_backend/
+https://www.reddit.com/r/sveltejs/comments/wd5o7e/offtopic_what_is_your_choice_of_backend_with/
+
+Libraries:
+
+https://sveltematerialui.com/
+https://svelte-headlessui.goss.io/docs
+https://madewithsvelte.com/
+https://www.houdinigraphql.com/
